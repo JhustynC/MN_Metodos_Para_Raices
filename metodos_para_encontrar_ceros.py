@@ -19,7 +19,7 @@ x, y = symbols('x y')
 
 punto_medio = lambda a,b: (a+b)/2
 
-def error_aproximado(aproxAct:int, aproxAnt:int):
+def error_aproximado2(aproxAct:int, aproxAnt:int):
   return abs((aproxAct - aproxAnt)/aproxAct) * 100
 
 def biseccion(f,a,b,t,ea):
@@ -29,6 +29,10 @@ def biseccion(f,a,b,t,ea):
   print("{:^10} {:^10} {:^10} {:^10} {:^10}".format ("i" ,"a","b","c","ea(%)"))
   
   i = 0
+  c = 0
+
+  if ea < t: return punto_medio(a,b)
+
   while ea > t:
 
     i += 1
