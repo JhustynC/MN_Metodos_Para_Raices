@@ -23,8 +23,10 @@ def menu(op):
             saludar()
         case 2:
             #pongo este cambio para ver en github
+            saludar()
             ...
         case 3:
+            saludar()
             ...
         case 4:
             ...
