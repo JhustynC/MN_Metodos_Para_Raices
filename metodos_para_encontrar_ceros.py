@@ -10,6 +10,7 @@ Original file is located at
 ## Integrantes: Patricia Cajas & Jhustyn Carvajal
 """
 
+
 from sympy import * 
 import numpy as np
 import matplotlib.pyplot as plt
