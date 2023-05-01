@@ -10,6 +10,7 @@ def imprimir_menu():
         print("\033[1;36m"+"3.Newton-Raphson")
         print("\033[1;36m"+"4.Secante")
         print("\033[1;36m"+"5.Muller")
+        print("\033[1;36m"+"6.Gauss-Seidel")
         print("\033[4;35m"+""+'\033[0;m')
         op = int(input("Ingrese una opcion:"))
         if(isinstance(op, int) and (op > 0 and op <= 5)): #validamos que la opcion sea un entero y esete en el rango
@@ -31,6 +32,8 @@ def menu(op):
         case 4:
             ...
         case 5:
+            ...
+        case 6:
             ...
         case _:
             ...            
