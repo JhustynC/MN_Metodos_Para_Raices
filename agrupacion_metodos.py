@@ -1,3 +1,3 @@
-from MetodosEncontrarCeros import *
-
+from biseccion import *
+from punto_fijo import *
 
