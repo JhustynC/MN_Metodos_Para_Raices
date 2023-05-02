@@ -3,5 +3,5 @@ from models.iencontrar_raices import IEncontrarRaices
 
 class GaussSeidel(MetodoHallarRaiz, IEncontrarRaices):
 
-    def hallarRaices(self):
-        print("gauss")
+    def hallarRaices(self, tolerancia, iteraciones):
+        return super().hallarRaices(tolerancia, iteraciones)

@@ -1,10 +1,35 @@
 from agrupacion_metodos import *
 
+
+def validarNumero(string,i,vi=None,vf=None):
+    match i:
+        case 1: 
+            try: # Validamos que la opcion sea un entero 
+                num = int(string)
+                if(vi != None and vf != None):
+                    if(num >= vi and num <= vf): 
+                        return num
+                    else: return False
+                return num
+            except Exception:
+                print("Dato Incorrecto (No es entero)")
+        case 2:
+            try: # Validamos que la opcion sea un flotante 
+                num = float(string)
+                if(vi != None and vf != None): 
+                    if(num >= vi and num <= vf): 
+                        return num
+                    else: return False
+                return num
+            except Exception:
+                print("Dato Incorrecto (No es flotante)")
+    return False
+
+
 def seleccionar_opcion_metodo():
     op = 0
 
-    while True:  
-       
+    while True:    
         print( "\n"+"\033[1;4;32m"+"  Metodos para encontrar la raices  "+'\033[0;m') 
         print("\033[1;36m"+"1.Biseccion")
         print("\033[1;36m"+"2.Punto Fijo")
@@ -12,17 +37,13 @@ def seleccionar_opcion_metodo():
         print("\033[1;36m"+"4.Secante")
         print("\033[1;36m"+"5.Muller")
         print("\033[1;36m"+"6.Gauss-Seidel")
-        print("\033[1;36m"+"7.Modificar Tolerancia/Umbral")
+        print("\033[1;36m"+"7.Modificar Iteraciones - Tolerancia/Umbral (por Default)")
         print("\033[1;36m"+"8.Salir")
         print("\033[4;35m"+""+'\033[0;m')
-      
-        try: # Validamos que la opcion sea un entero y esete en el rango
-            op = int(input("Ingrese una opcion:"))
-            if(op > 0 or op <= 8): 
-                return op
-        except Exception:
-            print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
-            print("\nOpcion Incorrecta, vuelva a intentar")
+        op =  validarNumero(input("Ingrese una opcion:"),1,1,8)
+        if(op != False): return op
+        print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
+        print("\nOpcion Incorrecta, vuelva a intentar")
 
 
 def ingresar_iteraciones_umbral():
@@ -30,6 +51,8 @@ def ingresar_iteraciones_umbral():
 
 def menu():
     tolerancia = 0.01
+    n = 10
+    #-------------------------------
     biseccion = Biseccion()
     punto_fijo = PuntoFijo()
     newton_raphson = NewtonRaphson()
@@ -38,33 +61,69 @@ def menu():
     gauss_seidel = GaussSeidel()
 
     while True:
-        op = seleccionar_opcion_metodo()
         
+        opm = seleccionar_opcion_metodo()#opcion para seleccionar metodo
+        
+        if opm != 7 and opm != 8:
+            while True:
+                print( "\n"+"\033[1;4;32m"+"   Criterio de Finalización "+'\033[0;m') 
+                print("\033[1;36m"+"1.Iteraciones")
+                print("\033[1;36m"+"2.Tolerancia/Umbral")
+                print("\033[4;35m"+""+'\033[0;m')
+                opc = validarNumero(input("Ingrese una opcion:"),1,1,2)
+                if( opc != False): 
+                     match opc:
+                        case 1:
+                            n = validarNumero(input("Ingrese un numero de iteraciones:"),1)
+                            if n != False: break
+                        case 2:
+                            tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
+                            if tolerancia != False: break
+                print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
+                print("\nOpcion Incorrecta, vuelva a intentar")
 
         #TODO: Pedir datos aqui, iteraciones, umbral/tolerancia y funcion a evaluar
 
-        match op:
+        match opm:
             case 1:
-                biseccion.hallarRaices()
+                biseccion.hallarRaices(tolerancia, n)
             case 2:
-                punto_fijo.hallarRaices()
+                punto_fijo.hallarRaices(tolerancia, n)
             case 3:
-                newton_raphson.hallarRaices()
+                newton_raphson.hallarRaices(tolerancia, n)
             case 4:
-                secante.hallarRaices()
+                secante.hallarRaices(tolerancia, n)
             case 5:
-                muller.hallarRaices()
+                muller.hallarRaices(tolerancia, n)
             case 6:
-                gauss_seidel.hallarRaices()
+                gauss_seidel.hallarRaices(tolerancia, n)
             case 7:
-                print("El valor de la tolerancia es: {}".format(tolerancia))
-                try: # Validamos que la opcion sea un entero y esete en el rango
-                    tolerancia = float(input("Ingrese una nueva tolerancia:"))
-                except Exception:
+                print("\n"+"\033[1;36m"+f"El valor de las iteraciones es:{n}")
+                print("\033[1;36m"+f"El valor de la tolerancia es: {tolerancia}")
+              
+                while True:
+                    print( "\n"+"\033[1;4;32m"+"   Modificar Valores Default  "+'\033[0;m') 
+                    print("\033[1;36m"+"1.Iteraciones")
+                    print("\033[1;36m"+"2.Tolerancia/Umbral")
+                    print("\033[1;36m"+"3.Regresar")
+                    print("\033[4;35m"+""+'\033[0;m')
+                    opc = validarNumero(input("Ingrese una opcion:"),1,1,3)
+                    if( opc != False): 
+                        match opc:
+                            case 1:
+                                n = validarNumero(input("Ingrese un numero de iteraciones:"),1)
+                                if n != False: break
+                            case 2:
+                                tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
+                                if tolerancia != False: break
+                            case 3:
+                                break
                     print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
-                    print("Valor Incorrecto, vuelva a intentar")
+                    print("\nOpcion Incorrecta, vuelva a intentar")
+                
             case 8:
-                print("Gracias por usar el programa")
+                print("\033[1;31m"+"Gracias por usar el programa")
+                print("\033[4;35m"+""+'\033[0;m')
                 break           
     
 
