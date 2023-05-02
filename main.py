@@ -1,4 +1,4 @@
-from agrupacion_metodos import *
+from agrupacion_metodos import * #aqui se agrupan todos los metodos
 
 
 def validarNumero(string,i,vi=None,vf=None):
