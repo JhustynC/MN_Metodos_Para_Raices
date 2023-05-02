@@ -1,0 +1,4 @@
+#ingnorar el procesar en entorno virtual
+MNvenv/
+
+.vscode/
