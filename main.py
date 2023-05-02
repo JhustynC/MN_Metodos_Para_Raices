@@ -3,9 +3,10 @@ from agrupacion_metodos import *
 
 def seleccionar_opcion_menu():
     op = 0
-    while True:    
-        print("\n\033[2J\033[1;1f") # Borrar pantalla y situar cursor
-        print("\033[1;4;32m"+"  Metodos para encontrar la raices  "+'\033[0;m') 
+
+    while True:  
+       
+        print( "\n"+"\033[1;4;32m"+"  Metodos para encontrar la raices  "+'\033[0;m') 
         print("\033[1;36m"+"1.Biseccion")
         print("\033[1;36m"+"2.Punto Fijo")
         print("\033[1;36m"+"3.Newton-Raphson")
@@ -14,16 +15,24 @@ def seleccionar_opcion_menu():
         print("\033[1;36m"+"6.Gauss-Seidel")
         print("\033[1;36m"+"7.Salir")
         print("\033[4;35m"+""+'\033[0;m')
-        op = int(input("Ingrese una opcion:"))
-        if(isinstance(op, int) and (op > 0 and op <= 7)): #validamos que la opcion sea un entero y esete en el rango
-            return op
-        
+      
+        try: # Validamos que la opcion sea un entero y esete en el rango
+            op = int(input("Ingrese una opcion:"))
+            if(op > 0 or op <= 7): 
+                return op
+        except Exception:
+            print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
+            print("\nOpcion Incorrecta, vuelva a intentar")
+
+
 def menu():
     biseccion = Biseccion()
     punto_fijo = PuntoFijo()
-    
+    #newton_raphson = NewtonRaphson()
+    #secante = Secante()
+    #muller = Muller()
+    #gauss_seidel = GaussSeidel()
 
-    op = 0
     while True:
         op = seleccionar_opcion_menu()
         
@@ -43,7 +52,7 @@ def menu():
             case 6:
                 ...
             case 7:
-                print("Gracais por usar el programa")
+                print("Gracias por usar el programa")
                 break           
     
 

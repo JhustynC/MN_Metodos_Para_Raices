@@ -3,6 +3,3 @@ class MetodoHallarRaiz():
     n = 0
     t = 0
 
-    def MetodoHallarRaiz(self):
-        ...
-
