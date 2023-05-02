@@ -58,10 +58,11 @@ def menu():
     gauss_seidel = GaussSeidel()
 
     while True:
-        
+        print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
         opm = seleccionar_opcion_metodo()#opcion para seleccionar metodo
         opc = 0 #opcion para seleccionar criterio de finalizacion
         if opm != 7 and opm != 8:
+            print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
             while True:
                 print( "\n"+"\033[1;4;32m"+"   Criterio de Finalización "+'\033[0;m') 
                 print("\033[1;36m"+"1.Iteraciones")
@@ -77,11 +78,14 @@ def menu():
                         case 2:
                             tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
                             if tolerancia != False: break
-                        case 3: break
+                        case 3: 
+                            print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
+                            break
                 print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
                 print("\nOpcion Incorrecta, vuelva a intentar")
 
         if opc != 3:
+            print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
             match opm:
                 case 1:
                     biseccion.hallarRaices(tolerancia, n, opc)
@@ -98,7 +102,7 @@ def menu():
                 case 7:
                     print("\n"+"\033[1;36m"+f"El valor de las iteraciones es: {n}")
                     print("\033[1;36m"+f"El valor de la tolerancia es: {tolerancia}")
-                
+                    print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
                     while True:
                         print( "\n"+"\033[1;4;32m"+"   Modificar Valores Default  "+'\033[0;m') 
                         print("\033[1;36m"+"1.Iteraciones")
