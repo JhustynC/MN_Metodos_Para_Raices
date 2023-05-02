@@ -6,15 +6,20 @@ import matplotlib.pyplot as plt
 
 class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
 
-    x, y = symbols('x y')
-
-    punto_medio = lambda self,a,b: (a+b)/2
+    punto_medio = lambda self ,a, b: (a+b)/2
 
     def error_aproximado(self, aproxAct:int, aproxAnt:int):
         return abs((aproxAct - aproxAnt)/aproxAct) * 100
+
+    #Se aplica a la funcion de Biseccion
+    def validaSignoDiferente(self,f,a,b):
+        if(f(a) >  0 and f(b) < 0 or f(b) >  0 and f(a) < 0):
+            return True
+        else:
+            return False
     
     def biseccion(self,f,a,b,t,ea):
-        print("Estoy desde Biseccion")  
+
         print("")
         print("{:^60}".format("Metodo de Bisección"))
         print("{:^10} {:^10} {:^10} {:^10} {:^10}".format("i" ,"a","b","c","ea(%)"))
@@ -42,21 +47,23 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             print("{:^10} {:^10f} {:^10f} {:^10f} {:^10}".format(i,a,b,c,round(ea,9)))
         return c      
 
-    def hallarRaices(self):
+    def hallarRaices(self,tolerancia):
         #Ingreso de la Función
-        fs = sympify(input("ingrese la funcion en terminos de x:"))
-        f = lambdify(self.x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar
-
-        a = int(input("ingrese el X0:")) #Ingreso del limite inferior
-        b = int(input("ingrese el X1:")) #Ingreso del limite superior
+        f = self.obtenerFuncion()
+        
+        a = float(input("ingrese el X0:")) #Ingreso del limite inferior
+        b = float(input("ingrese el X1:")) #Ingreso del limite superior
         ea = 1 #Error aproximado inicializado en 1
-        t = 0.1 #Tolerancia del error
+        t = tolerancia #Tolerancia del error
 
+        #if(self.validaSignoDiferente(f,a,b)):
+                
         if(f(a) * f(b) < 0): # Verificamos si en el intervalo esta la raiz 
         
             point = self.biseccion(f,a,b,t,ea)#Calculamos el aproximado de la reis con Bisección
 
             #Grafica de la funcion y punto
+            plt.figure("Biseccion")#----------
             xpts = np.linspace(-10,10) #Array de valores, para la grafica
             plt.plot(xpts, f(xpts))
             plt.title("Grafica de la Funcion")
@@ -68,7 +75,6 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             plt.axhline(color="black")
             plt.ylim([-5,5])
             plt.title(label="Metodo Biseccion")
-            plt.figure("Test")#----------
             plt.show()
             #-----------------------------
 
@@ -80,7 +86,6 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             xpts = np.linspace(-10,10, num=100) #Array de valores, para la grafica
             plt.plot(xpts, f(xpts))
             plt.title("Sugerencia desde la Grafica de la Funcion")
-            plt.figure("Test")
             plt.grid(True, which='both')
             plt.axvline(color="black")
             plt.axhline(color="black")
@@ -90,3 +95,7 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             plt.ylim([-5,5])
             plt.show()
             #-----------------------------x
+
+    
+    def hallarRaicesIteraciones(self):
+        ...

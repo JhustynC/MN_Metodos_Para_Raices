@@ -6,7 +6,6 @@ from abc import abstractmethod
 class IEncontrarRaices(metaclass=ABCMeta):
     
     @abstractmethod
-    def hallarRaices(self):
-        pass
+    def hallarRaices(self,tolerancia):...
 
     

@@ -1,7 +1,6 @@
 from agrupacion_metodos import *
 
-
-def seleccionar_opcion_menu():
+def seleccionar_opcion_metodo():
     op = 0
 
     while True:  
@@ -13,19 +12,24 @@ def seleccionar_opcion_menu():
         print("\033[1;36m"+"4.Secante")
         print("\033[1;36m"+"5.Muller")
         print("\033[1;36m"+"6.Gauss-Seidel")
-        print("\033[1;36m"+"7.Salir")
+        print("\033[1;36m"+"7.Modificar Tolerancia/Umbral")
+        print("\033[1;36m"+"8.Salir")
         print("\033[4;35m"+""+'\033[0;m')
       
         try: # Validamos que la opcion sea un entero y esete en el rango
             op = int(input("Ingrese una opcion:"))
-            if(op > 0 or op <= 7): 
+            if(op > 0 or op <= 8): 
                 return op
         except Exception:
             print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
             print("\nOpcion Incorrecta, vuelva a intentar")
 
 
+def ingresar_iteraciones_umbral():
+    ...
+
 def menu():
+    tolerancia = 0.01
     biseccion = Biseccion()
     punto_fijo = PuntoFijo()
     newton_raphson = NewtonRaphson()
@@ -34,8 +38,9 @@ def menu():
     gauss_seidel = GaussSeidel()
 
     while True:
-        op = seleccionar_opcion_menu()
+        op = seleccionar_opcion_metodo()
         
+
         #TODO: Pedir datos aqui, iteraciones, umbral/tolerancia y funcion a evaluar
 
         match op:
@@ -52,6 +57,13 @@ def menu():
             case 6:
                 gauss_seidel.hallarRaices()
             case 7:
+                print("El valor de la tolerancia es: {}".format(tolerancia))
+                try: # Validamos que la opcion sea un entero y esete en el rango
+                    tolerancia = float(input("Ingrese una nueva tolerancia:"))
+                except Exception:
+                    print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
+                    print("Valor Incorrecto, vuelva a intentar")
+            case 8:
                 print("Gracias por usar el programa")
                 break           
     

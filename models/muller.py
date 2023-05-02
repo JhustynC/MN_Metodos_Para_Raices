@@ -3,5 +3,5 @@ from models.iencontrar_raices import IEncontrarRaices
 
 class Muller(MetodoHallarRaiz, IEncontrarRaices):
 
-    def hallarRaices(self):
+    def hallarRaices(self,tolerancia):
         print("muller")
