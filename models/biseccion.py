@@ -47,7 +47,7 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             print("{:^10} {:^10f} {:^10f} {:^10f} {:^10}".format(i,a,b,c,round(ea,9)))
         return c      
 
-    def hallarRaices(self,tolerancia, iteraciones):
+    def hallarRaices(self,tolerancia, iteraciones, opc):
         #Ingreso de la Función
         f = self.obtenerFuncion()
         

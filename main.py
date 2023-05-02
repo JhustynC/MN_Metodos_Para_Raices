@@ -40,14 +40,11 @@ def seleccionar_opcion_metodo():
         print("\033[1;36m"+"7.Modificar Iteraciones - Tolerancia/Umbral (por Default)")
         print("\033[1;36m"+"8.Salir")
         print("\033[4;35m"+""+'\033[0;m')
-        op =  validarNumero(input("Ingrese una opcion:"),1,1,8)
+        op =  validarNumero(input("Ingrese una opcion: "),1,1,8)
         if(op != False): return op
         print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
         print("\nOpcion Incorrecta, vuelva a intentar")
 
-
-def ingresar_iteraciones_umbral():
-    ...
 
 def menu():
     tolerancia = 0.01
@@ -63,14 +60,15 @@ def menu():
     while True:
         
         opm = seleccionar_opcion_metodo()#opcion para seleccionar metodo
-        
+        opc = 0 #opcion para seleccionar criterio de finalizacion
         if opm != 7 and opm != 8:
             while True:
                 print( "\n"+"\033[1;4;32m"+"   Criterio de Finalización "+'\033[0;m') 
                 print("\033[1;36m"+"1.Iteraciones")
                 print("\033[1;36m"+"2.Tolerancia/Umbral")
+                print("\033[1;36m"+"3.Regresar")
                 print("\033[4;35m"+""+'\033[0;m')
-                opc = validarNumero(input("Ingrese una opcion:"),1,1,2)
+                opc = validarNumero(input("Ingrese una opcion:"),1,1,3)
                 if( opc != False): 
                      match opc:
                         case 1:
@@ -79,53 +77,53 @@ def menu():
                         case 2:
                             tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
                             if tolerancia != False: break
+                        case 3: break
                 print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
                 print("\nOpcion Incorrecta, vuelva a intentar")
 
-        #TODO: Pedir datos aqui, iteraciones, umbral/tolerancia y funcion a evaluar
-
-        match opm:
-            case 1:
-                biseccion.hallarRaices(tolerancia, n)
-            case 2:
-                punto_fijo.hallarRaices(tolerancia, n)
-            case 3:
-                newton_raphson.hallarRaices(tolerancia, n)
-            case 4:
-                secante.hallarRaices(tolerancia, n)
-            case 5:
-                muller.hallarRaices(tolerancia, n)
-            case 6:
-                gauss_seidel.hallarRaices(tolerancia, n)
-            case 7:
-                print("\n"+"\033[1;36m"+f"El valor de las iteraciones es:{n}")
-                print("\033[1;36m"+f"El valor de la tolerancia es: {tolerancia}")
-              
-                while True:
-                    print( "\n"+"\033[1;4;32m"+"   Modificar Valores Default  "+'\033[0;m') 
-                    print("\033[1;36m"+"1.Iteraciones")
-                    print("\033[1;36m"+"2.Tolerancia/Umbral")
-                    print("\033[1;36m"+"3.Regresar")
-                    print("\033[4;35m"+""+'\033[0;m')
-                    opc = validarNumero(input("Ingrese una opcion:"),1,1,3)
-                    if( opc != False): 
-                        match opc:
-                            case 1:
-                                n = validarNumero(input("Ingrese un numero de iteraciones:"),1)
-                                if n != False: break
-                            case 2:
-                                tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
-                                if tolerancia != False: break
-                            case 3:
-                                break
-                    print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
-                    print("\nOpcion Incorrecta, vuelva a intentar")
+        if opc != 3:
+            match opm:
+                case 1:
+                    biseccion.hallarRaices(tolerancia, n, opc)
+                case 2:
+                    punto_fijo.hallarRaices(tolerancia, n, opc)
+                case 3:
+                    newton_raphson.hallarRaices(tolerancia, n, opc)
+                case 4:
+                    secante.hallarRaices(tolerancia, n, opc)
+                case 5:
+                    muller.hallarRaices(tolerancia, n, opc)
+                case 6:
+                    gauss_seidel.hallarRaices(tolerancia, n, opc)
+                case 7:
+                    print("\n"+"\033[1;36m"+f"El valor de las iteraciones es: {n}")
+                    print("\033[1;36m"+f"El valor de la tolerancia es: {tolerancia}")
                 
-            case 8:
-                print("\033[1;31m"+"Gracias por usar el programa")
-                print("\033[4;35m"+""+'\033[0;m')
-                break           
-    
+                    while True:
+                        print( "\n"+"\033[1;4;32m"+"   Modificar Valores Default  "+'\033[0;m') 
+                        print("\033[1;36m"+"1.Iteraciones")
+                        print("\033[1;36m"+"2.Tolerancia/Umbral")
+                        print("\033[1;36m"+"3.Regresar")
+                        print("\033[4;35m"+""+'\033[0;m')
+                        opc = validarNumero(input("Ingrese una opcion:"),1,1,3)
+                        if( opc != False): 
+                            match opc:
+                                case 1:
+                                    n = validarNumero(input("Ingrese un numero de iteraciones:"),1)
+                                    if n != False: break
+                                case 2:
+                                    tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
+                                    if tolerancia != False: break
+                                case 3:
+                                    break
+                        print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
+                        print("\nOpcion Incorrecta, vuelva a intentar")
+                    
+                case 8:
+                    print("\033[1;31m"+"Gracias por usar el programa")
+                    print("\033[4;35m"+""+'\033[0;m')
+                    break           
+        
 
 def main():
     menu()
