@@ -1,5 +1,5 @@
-from metodo_hallar_raiz import MetodoHallarRaiz
-from iencontrar_raices import IEncontrarRaices
+from models.metodo_hallar_raiz import MetodoHallarRaiz
+from models.iencontrar_raices import IEncontrarRaices
 
 class NewtonRaphson(MetodoHallarRaiz, IEncontrarRaices):
 
