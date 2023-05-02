@@ -42,7 +42,7 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             print("{:^10} {:^10f} {:^10f} {:^10f} {:^10}".format(i,a,b,c,round(ea,9)))
         return c      
 
-    def hallerRaices(self):
+    def hallarRaices(self):
         #Ingreso de la Función
         fs = sympify(input("ingrese la funcion en terminos de x:"))
         f = lambdify(self.x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar

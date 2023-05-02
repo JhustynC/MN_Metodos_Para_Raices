@@ -28,10 +28,10 @@ def seleccionar_opcion_menu():
 def menu():
     biseccion = Biseccion()
     punto_fijo = PuntoFijo()
-    #newton_raphson = NewtonRaphson()
-    #secante = Secante()
-    #muller = Muller()
-    #gauss_seidel = GaussSeidel()
+    newton_raphson = NewtonRaphson()
+    secante = Secante()
+    muller = Muller()
+    gauss_seidel = GaussSeidel()
 
     while True:
         op = seleccionar_opcion_menu()
@@ -40,17 +40,17 @@ def menu():
 
         match op:
             case 1:
-                biseccion.hallerRaices()
+                biseccion.hallarRaices()
             case 2:
-                punto_fijo.hallerRaices()
+                punto_fijo.hallarRaices()
             case 3:
-                punto_fijo.hallerRaices()
+                newton_raphson.hallarRaices()
             case 4:
-                ...
+                secante.hallarRaices()
             case 5:
-                ...
+                muller.hallarRaices()
             case 6:
-                ...
+                gauss_seidel.hallarRaices()
             case 7:
                 print("Gracias por usar el programa")
                 break           
