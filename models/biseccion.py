@@ -64,7 +64,7 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
 
             #Grafica de la funcion y punto
             plt.figure("Biseccion")#----------
-            xpts = np.linspace(-10,10) #Array de valores, para la grafica
+            xpts = np.linspace(-30,30) #Array de valores, para la grafica
             plt.plot(xpts, f(xpts))
             plt.title("Grafica de la Funcion")
             plt.grid(True, which='both')
