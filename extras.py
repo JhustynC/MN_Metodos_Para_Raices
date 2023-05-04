@@ -1,6 +1,6 @@
 from sympy import * 
 import models.metodo_hallar_raiz as m
-from models.agrupacion_metodos2 import *
+from models.agrupacion_metodos import *
 
 x, y = symbols('x y') 
 '''
