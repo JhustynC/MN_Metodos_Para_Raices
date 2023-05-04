@@ -1,23 +1,24 @@
 from sympy import * 
 import numpy as np
 import matplotlib.pyplot as plt
-import itertools
+import math
 
 class MetodoHallarRaiz():
     
     x, y = symbols('x y')
     
-    f = 0
-    n = 0
-    t = 0
 
     def obtenerFuncion(self):
         fs = sympify(input("ingrese la funcion en terminos de x:"))#Ingreso de la Función
         return lambdify(self.x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar
 
-    #Grafica de la funcion y punto
+
+    CalcularUmbral = lambda self, cifras: (0.5 * pow(10, 2 - cifras))
+    CalcularCifras = lambda self, umbral: int(2 - (math.log(2 * umbral) / math.log(10))) # Calcula el número de cifras significativas para el umbral dado
+
+
     def graficarFuncion(self,f,lp:list):
-        print("<--Grafica de la funcion-->")
+        print("<--Grafica de la funcion en pantalla-->")
         xpts = np.linspace(-5,5) #Array de valores, para la grafica
         plt.plot(xpts,f(xpts))
         plt.title("Grafica de la Funcion")
@@ -32,4 +33,5 @@ class MetodoHallarRaiz():
         plt.axhline(color="black")
         plt.ylim([-3,3])
         plt.show()
-    #-----------------------------
+
+    

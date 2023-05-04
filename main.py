@@ -47,8 +47,10 @@ def seleccionar_opcion_metodo():
 
 
 def menu():
+    #-------------------------------
     tolerancia = 0.01
-    n = 10
+    n = 0
+    cifras = 4
     #-------------------------------
     biseccion = Biseccion()
     punto_fijo = PuntoFijo()
@@ -56,7 +58,7 @@ def menu():
     secante = Secante()
     muller = Muller()
     gauss_seidel = GaussSeidel()
-
+    #-------------------------------
     while True:
         print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
         opm = seleccionar_opcion_metodo()#opcion para seleccionar metodo
@@ -67,28 +69,33 @@ def menu():
                 print( "\n"+"\033[1;4;32m"+"   Criterio de Finalización "+'\033[0;m') 
                 print("\033[1;36m"+"1.Iteraciones")
                 print("\033[1;36m"+"2.Tolerancia/Umbral")
-                print("\033[1;36m"+"3.Regresar")
+                print("\033[1;36m"+"3.Cifras Significativas")
+                print("\033[1;36m"+"4.Regresar")
                 print("\033[4;35m"+""+'\033[0;m')
-                opc = validarNumero(input("Ingrese una opcion:"),1,1,3)
+                opc = validarNumero(input("Ingrese una opcion:"),1,1,4)
                 if( opc != False): 
                      match opc:
-                        case 1:
+                        case 1:#Iteraciones
                             n = validarNumero(input("Ingrese un numero de iteraciones:"),1)
-                            if n != False: break
-                        case 2:
+                            cifras = validarNumero(input("Ingrese un numero de cifras significativas:"),1)
+                            if cifras != False and n != False: break
+                        case 2:#Umbral
                             tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
                             if tolerancia != False: break
-                        case 3: 
+                        case 3:#Cifras Significativas
+                            cifras = validarNumero(input("Ingrese un numero de cifras significativas:"),1)
+                            if cifras != False: break
+                        case 4: 
                             print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
                             break
                 print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
                 print("\nOpcion Incorrecta, vuelva a intentar")
-
-        if opc != 3:
+        #--------------------------------------------------------------------
+        if opc != 4:
             print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
             match opm:
                 case 1:
-                    biseccion.hallarRaices(tolerancia, n, opc)
+                    biseccion.hallarRaices(tolerancia, n,cifras, opc)
                 case 2:
                     punto_fijo.hallarRaices(tolerancia, n, opc)
                 case 3:
