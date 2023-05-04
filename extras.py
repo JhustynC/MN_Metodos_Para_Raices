@@ -21,8 +21,27 @@ def obtenerFuncion():
         fs = sympify(input("ingrese la funcion en terminos de x:"))#Ingreso de la Función
         return lambdify(x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar
 
-f = obtenerFuncion()
+def metodo(ite = 0, umbral = 0, cif = 4):
+        cont = 0
+        ea = 1
+        while True:
+                if ite != 0 and cont == ite:
+                        print("Se finalizo por iteraciones")
+                        break 
+                elif umbral != 0 and ea > umbral:
+                        print("Se finalizo por umbral")
+                        break 
+                
+                #metodo asignado
+                cont += 1
+                ea += 1
+                print(f"iteracion {cont}, cifras significativas {cif}")
 
-mhr = m.MetodoHallarRaiz()
+metodo(umbral=10)
 
-mhr.graficarFuncion(f=f,lp=[i for i in range(20)])
+#f = obtenerFuncion()
+
+#mhr = m.MetodoHallarRaiz()
+
+#mhr.graficarFuncion(f=f,lp=[i for i in range(20)])
+

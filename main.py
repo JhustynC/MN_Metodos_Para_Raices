@@ -1,6 +1,10 @@
 
 from models.agrupacion_metodos import *
 
+iteraciones = 0
+tolerancia = 0
+cifras = 0
+
 def validarNumero(string,i,vi=None,vf=None):
     match i:
         case 1: 
@@ -26,7 +30,7 @@ def validarNumero(string,i,vi=None,vf=None):
     return False
 
 
-def seleccionar_opcion_metodo():
+def seleccionar_opcion_metodo() -> (int | float):
     op = 0
 
     while True:    
@@ -46,11 +50,41 @@ def seleccionar_opcion_metodo():
         print("\nOpcion Incorrecta, vuelva a intentar")
 
 
-def menu():
+def seleccionar_opcion_criterio():
+    
+    opc = 0
+    global iteraciones, tolerancia, cifras #para poder tener acceso a a}las variables globales
     #-------------------------------
-    tolerancia = 0.01
-    n = 0
-    cifras = 4
+    print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
+    while True:
+        print( "\n"+"\033[1;4;32m"+"   Criterio de Finalización "+'\033[0;m') 
+        print("\033[1;36m"+"1.Iteraciones")
+        print("\033[1;36m"+"2.Tolerancia/Umbral")
+        print("\033[1;36m"+"3.Cifras Significativas")
+        print("\033[1;36m"+"4.Regresar")
+        print("\033[4;35m"+""+'\033[0;m')
+        opc = validarNumero(input("Ingrese una opcion:"),1,1,4)
+        if(opc != False): 
+                match opc:
+                    case 1:#Iteraciones
+                        iteraciones = validarNumero(input("Ingrese un numero de iteraciones:"),1)
+                        cifras = validarNumero(input("Ingrese un numero de cifras significativas:"),1)
+                        if cifras != False and iteraciones != False: return opc
+                    case 2:#Umbral
+                        tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
+                        if tolerancia != False: return opc
+                    case 3:#Cifras Significativas
+                        cifras = validarNumero(input("Ingrese un numero de cifras significativas:"),1)
+                        if cifras != False: return opc
+                    case 4: 
+                        print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
+                        return opc
+        print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
+        print("\nOpcion Incorrecta, vuelva a intentar")
+
+
+def menu():
+    global iteraciones, tolerancia, cifras
     #-------------------------------
     biseccion = Biseccion()
     punto_fijo = PuntoFijo()
@@ -64,6 +98,7 @@ def menu():
         opm = seleccionar_opcion_metodo()#opcion para seleccionar metodo
         opc = 0 #opcion para seleccionar criterio de finalizacion
         if opm != 7 and opm != 8:
+            '''    
             print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
             while True:
                 print( "\n"+"\033[1;4;32m"+"   Criterio de Finalización "+'\033[0;m') 
@@ -76,9 +111,9 @@ def menu():
                 if( opc != False): 
                      match opc:
                         case 1:#Iteraciones
-                            n = validarNumero(input("Ingrese un numero de iteraciones:"),1)
+                            iteraciones = validarNumero(input("Ingrese un numero de iteraciones:"),1)
                             cifras = validarNumero(input("Ingrese un numero de cifras significativas:"),1)
-                            if cifras != False and n != False: break
+                            if cifras != False and iteraciones != False: break
                         case 2:#Umbral
                             tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
                             if tolerancia != False: break
@@ -90,24 +125,26 @@ def menu():
                             break
                 print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
                 print("\nOpcion Incorrecta, vuelva a intentar")
+            '''
+            opc = seleccionar_opcion_criterio()
         #--------------------------------------------------------------------
-        if opc != 4:
+        if opc != 4: #! Segun la opcion del menu criterio
             print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
             match opm:
                 case 1:
-                    biseccion.hallarRaices(tolerancia, n,cifras, opc)
+                    biseccion.hallarRaices(opc, tolerancia, iteraciones, cifras)
                 case 2:
-                    punto_fijo.hallarRaices(tolerancia, n, opc)
+                    punto_fijo.hallarRaices(opc, tolerancia, iteraciones, cifras)
                 case 3:
-                    newton_raphson.hallarRaices(tolerancia, n, opc)
+                    newton_raphson.hallarRaices(opc, tolerancia, iteraciones, cifras)
                 case 4:
-                    secante.hallarRaices(tolerancia, n, opc)
+                    secante.hallarRaices(opc, tolerancia, iteraciones, cifras)
                 case 5:
-                    muller.hallarRaices(tolerancia, n, opc)
+                    muller.hallarRaices(opc, tolerancia, iteraciones, cifras)
                 case 6:
-                    gauss_seidel.hallarRaices(tolerancia, n, opc)
+                    gauss_seidel.hallarRaices(opc, tolerancia, iteraciones, cifras)
                 case 7:
-                    print("\n"+"\033[1;36m"+f"El valor de las iteraciones es: {n}")
+                    print("\n"+"\033[1;36m"+f"El valor de las iteraciones es: {iteraciones}")
                     print("\033[1;36m"+f"El valor de la tolerancia es: {tolerancia}")
                     print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
                     while True:
@@ -120,8 +157,8 @@ def menu():
                         if( opc != False): 
                             match opc:
                                 case 1:
-                                    n = validarNumero(input("Ingrese un numero de iteraciones:"),1)
-                                    if n != False: break
+                                    iteraciones = validarNumero(input("Ingrese un numero de iteraciones:"),1)
+                                    if iteraciones != False: break
                                 case 2:
                                     tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
                                     if tolerancia != False: break
@@ -134,7 +171,7 @@ def menu():
                     print("\033[1;31m"+"Gracias por usar el programa")
                     print("\033[4;35m"+""+'\033[0;m')
                     break           
-        
+        iteraciones = 0
 
 def main():
     menu()
