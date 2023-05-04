@@ -1,5 +1,6 @@
-from models.agrupacion_metodos import * #aqui se agrupan todos los metodos
 
+#from agrupacion_metodos import *
+from models.agrupacion_metodos2 import *
 
 def validarNumero(string,i,vi=None,vf=None):
     match i:

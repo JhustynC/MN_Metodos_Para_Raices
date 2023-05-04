@@ -56,6 +56,7 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
 
     def hallarRaices(self,tolerancia, iteraciones,cifras, opc):
         
+        #Segun criterio de finalizacion
         match opc:
             case 1:#Iteraciones
                 #tolerancia = self.CalcularUmbral(cifras) #Opcional para tener un umbral con el numero de cifras
@@ -68,11 +69,9 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
 
         #Ingreso de la Función
         f = self.obtenerFuncion()
-        
         a = float(input("ingrese el X0:")) #Ingreso del limite inferior
         b = float(input("ingrese el X1:")) #Ingreso del limite superior
         ea = 1 #Error aproximado inicializado en 1
-        t = tolerancia #Tolerancia del error
 
         #if(self.validaSignoDiferente(f,a,b)):
                 
@@ -91,7 +90,3 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             #Grafica de la funcion y punto
             self.graficarFuncion(f,[self.punto_medio(a,b)])
             #-----------------------------x
-
-    
-    def hallarRaicesIteraciones(self):
-        ...
