@@ -7,6 +7,8 @@ class MetodoHallarRaiz():
     
     x, y = symbols('x y')
     
+    lea = []
+    lapoxr = []
 
     def obtenerFuncion(self):
         fs = sympify(input("ingrese la funcion en terminos de x:"))#Ingreso de la Función

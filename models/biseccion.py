@@ -34,14 +34,18 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             i += 1
             c = self.punto_medio(a,b)
             ea = self.error_aproximado(a,b)
+            self.lea.append(ea)
             evalua = f(a)*f(c)
 
             if evalua < 0:
                 b = c
+                self.lapoxr.append(c)
             elif evalua > 0:
                 a = c
+                self.lapoxr.append(c)
             else:
                 print("Se econtro la raiz")
+                self.lapoxr.append(c)
                 return c
             
             if(ite != 0 and i > ite): 
