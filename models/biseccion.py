@@ -59,13 +59,10 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
                 print("El error alcanzo el umbral, se termina de iterar")
                 return c
 
-    def hallarRaices(self,opc,tolerancia:float , iteraciones:int ,cifras:int ):
+    def hallarRaices(self,opc,tolerancia:float , iteraciones:int = 0 ,cifras:int = 3):
         
         #Segun criterio de finalizacion
         match opc:
-            case 1:#Iteraciones
-                #tolerancia = self.CalcularUmbral(cifras) #Opcional para tener un umbral con el numero de cifras
-                ...
             case 2:#Umbral
                 cifras = self.CalcularCifras(tolerancia)#Calculo de cifras sig
             case 3:#Cifras Significativas
@@ -80,7 +77,7 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
 
         #if(self.validaSignoDiferente(f,a,b)):
                 
-        if(f(a) * f(b) < 0): # Verificamos si en el intervalo esta la raiz 
+        if(f(a) * f(b) < 0): # Verificamos si en el intervalo hay una raiz 
         
             point = self.biseccion(f,a,b,ea,tolerancia,iteraciones,cifras)#Calculamos el aproximado de la raiz con Bisección
             #Grafica de la funcion y punto
