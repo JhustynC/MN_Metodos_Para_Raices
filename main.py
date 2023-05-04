@@ -5,7 +5,7 @@ iteraciones = 0
 tolerancia = 0
 cifras = 0
 
-def validarNumero(string,i,vi=None,vf=None):
+def validarNumero(string,i,vi=None,vf=None) -> (int | float):
     match i:
         case 1: 
             try: # Validamos que la opcion sea un entero 
@@ -30,7 +30,7 @@ def validarNumero(string,i,vi=None,vf=None):
     return False
 
 
-def seleccionar_opcion_metodo() -> (int | float):
+def seleccionar_opcion_metodo() -> int:
     op = 0
 
     while True:    
@@ -50,7 +50,7 @@ def seleccionar_opcion_metodo() -> (int | float):
         print("\nOpcion Incorrecta, vuelva a intentar")
 
 
-def seleccionar_opcion_criterio():
+def seleccionar_opcion_criterio() -> int:
     
     opc = 0
     global iteraciones, tolerancia, cifras #para poder tener acceso a a}las variables globales
@@ -98,34 +98,6 @@ def menu():
         opm = seleccionar_opcion_metodo()#opcion para seleccionar metodo
         opc = 0 #opcion para seleccionar criterio de finalizacion
         if opm != 7 and opm != 8:
-            '''    
-            print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
-            while True:
-                print( "\n"+"\033[1;4;32m"+"   Criterio de Finalización "+'\033[0;m') 
-                print("\033[1;36m"+"1.Iteraciones")
-                print("\033[1;36m"+"2.Tolerancia/Umbral")
-                print("\033[1;36m"+"3.Cifras Significativas")
-                print("\033[1;36m"+"4.Regresar")
-                print("\033[4;35m"+""+'\033[0;m')
-                opc = validarNumero(input("Ingrese una opcion:"),1,1,4)
-                if( opc != False): 
-                     match opc:
-                        case 1:#Iteraciones
-                            iteraciones = validarNumero(input("Ingrese un numero de iteraciones:"),1)
-                            cifras = validarNumero(input("Ingrese un numero de cifras significativas:"),1)
-                            if cifras != False and iteraciones != False: break
-                        case 2:#Umbral
-                            tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
-                            if tolerancia != False: break
-                        case 3:#Cifras Significativas
-                            cifras = validarNumero(input("Ingrese un numero de cifras significativas:"),1)
-                            if cifras != False: break
-                        case 4: 
-                            print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
-                            break
-                print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
-                print("\nOpcion Incorrecta, vuelva a intentar")
-            '''
             opc = seleccionar_opcion_criterio()
         #--------------------------------------------------------------------
         if opc != 4: #! Segun la opcion del menu criterio
