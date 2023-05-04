@@ -1,9 +1,9 @@
 from sympy import * 
-    
-x, y = symbols('x y')
-def obtenerFuncion():
-        fs = sympify(input("ingrese la funcion en terminos de x:"))#Ingreso de la Función
-        return lambdify(x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar
+import models.metodo_hallar_raiz as m
+
+
+x, y = symbols('x y') 
+'''
 
 #Se aplica a la funcion de Biseccion
 def validaSignoDiferente(f,a,b):
@@ -12,8 +12,17 @@ def validaSignoDiferente(f,a,b):
     else:
         return False
 
-f = obtenerFuncion()
+
 x0 = float(input())
 x1 = float(input())
-
 print(validaSignoDiferente(f,x0,x1))
+'''
+def obtenerFuncion():
+        fs = sympify(input("ingrese la funcion en terminos de x:"))#Ingreso de la Función
+        return lambdify(x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar
+
+f = obtenerFuncion()
+
+mhr = m.MetodoHallarRaiz()
+
+mhr.graficarFuncion(f=f,lp=[i for i in range(20)])

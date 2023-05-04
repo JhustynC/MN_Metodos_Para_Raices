@@ -22,7 +22,7 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
 
         print("")
         print("{:^60}".format("Metodo de Bisección"))
-        print("{:^10} {:^10} {:^10} {:^10} {:^10}".format("i" ,"a","b","c","ea(%)"))
+        print("{:^10} {:^10} {:^10} {:^10} {:^10}".format("i","a","b","c","ea(%)"))
         
         i = 0
         c = 0
@@ -63,37 +63,15 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             point = self.biseccion(f,a,b,t,ea)#Calculamos el aproximado de la reis con Bisección
 
             #Grafica de la funcion y punto
-            plt.figure("Biseccion")#----------
-            xpts = np.linspace(-30,30) #Array de valores, para la grafica
-            plt.plot(xpts, f(xpts))
-            plt.title("Grafica de la Funcion")
-            plt.grid(True, which='both')
-            plt.scatter(point,0,c="red")
-            plt.xlabel("x")
-            plt.ylabel("f(x)")
-            plt.axvline(color="black")
-            plt.axhline(color="black")
-            plt.ylim([-5,5])
-            plt.title(label="Metodo Biseccion")
-            plt.show()
+            self.graficarFuncion(f,[point])
             #-----------------------------
 
         else: # En caso de que la raiz no esta en el intervalo dado
         
-            print("Ingrese un nuevo intervalo")
+            print("No existe una reiz en este intervalo. revise la grafica")
 
             #Grafica de la funcion y punto
-            xpts = np.linspace(-10,10, num=100) #Array de valores, para la grafica
-            plt.plot(xpts, f(xpts))
-            plt.title("Sugerencia desde la Grafica de la Funcion")
-            plt.grid(True, which='both')
-            plt.axvline(color="black")
-            plt.axhline(color="black")
-            plt.scatter(self.punto_medio(a,b),0,c="red")
-            plt.xlabel("x")
-            plt.ylabel("f(x)")
-            plt.ylim([-5,5])
-            plt.show()
+            self.graficarFuncion(f,[self.punto_medio(a,b)])
             #-----------------------------x
 
     
