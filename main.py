@@ -5,6 +5,10 @@ iteraciones = 0
 tolerancia = 0
 cifras = 0
 
+#TODO: Graficar todas las iteraciones Newton-Secante-Muller(Rectas)
+#TODO: Divisiones para cero
+#TODO: Divergencia y Oscilacion
+
 def validarNumero(string,i,vi=None,vf=None) -> (int | float):
     match i:
         case 1: 
@@ -29,7 +33,6 @@ def validarNumero(string,i,vi=None,vf=None) -> (int | float):
                 print("Dato Incorrecto (No es flotante)")
     return False
 
-
 def seleccionar_opcion_metodo() -> int:
     op = 0
 
@@ -48,7 +51,6 @@ def seleccionar_opcion_metodo() -> int:
         if(op != False): return op
         print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
         print("\nOpcion Incorrecta, vuelva a intentar")
-
 
 def seleccionar_opcion_criterio() -> int:
     
@@ -81,7 +83,6 @@ def seleccionar_opcion_criterio() -> int:
                         return opc
         print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
         print("\nOpcion Incorrecta, vuelva a intentar")
-
 
 def menu():
     global iteraciones, tolerancia, cifras
@@ -144,12 +145,12 @@ def menu():
                     print("\033[4;35m"+""+'\033[0;m')
                     break           
         iteraciones = 0
+        tolerancia = 0
+        cifras = 0
 
 def main():
     menu()
     
-
 if __name__ == "__main__":
     main()
 
-#TODO: Graficar todas las iteraciones Newton-Secante-Muller

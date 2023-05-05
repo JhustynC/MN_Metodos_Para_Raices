@@ -10,6 +10,9 @@ class MetodoHallarRaiz():
     lea = []
     lapoxr = []
 
+    def error_aproximado(self,aproxAct:int, aproxAnt:int):
+        return abs((aproxAct - aproxAnt)/aproxAct) * 100
+
     def obtenerFuncion(self):
         fs = sympify(input("ingrese la funcion en terminos de x:"))#Ingreso de la Función
         return lambdify(self.x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar
@@ -20,7 +23,9 @@ class MetodoHallarRaiz():
 
 
     def graficarFuncion(self,f,lp:list):
-        print("<--Grafica de la funcion en pantalla-->")
+        print("")
+        print("\033[1;31m"+"<--Grafica de la funcion en pantalla-->")
+        print("\033[4;35m"+""+'\033[0;m')
         xpts = np.linspace(-5,5) #Array de valores, para la grafica
         plt.plot(xpts,f(xpts))
         plt.title("Grafica de la Funcion")
