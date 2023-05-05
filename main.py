@@ -5,7 +5,7 @@ iteraciones = 0
 tolerancia = 0
 cifras = 0
 
-#TODO: Graficar todas las iteraciones Newton-Secante-Muller
+#TODO: Graficar todas las iteraciones Newton-Secante-Muller(Rectas)
 #TODO: Divisiones para cero
 #TODO: Divergencia y Oscilacion
 
