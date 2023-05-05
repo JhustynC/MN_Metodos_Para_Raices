@@ -4,12 +4,12 @@ from sympy import *
 
 class Secante(MetodoHallarRaiz, IEncontrarRaices):
 
-   def secante(self,f,x0,x1,tole,ite,cif):
 
+   def secante(self,f,x0,x1,tole,ite,cif):
       xs = 0
       eap = float("inf")
       i = 0
-      rtp = [] #para rectas en cada punto
+      #lrt = [] #para rectas en cada punto
 
       print("{:^3} {:^10} {:^10} ".format("i","xs","ea(%)"))
 
@@ -17,18 +17,24 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
 
          #Metodo
          try:
+            if i > 0:
+               xsant = xs
             xs = x1 - ((f(x1))*(x0-x1) / (f(x0)-(f(x1)))) #Formula del método de la secante.
             ea = self.error_aproximado(x1,x0)
          except:
             print("Division para cero generada, se para las iteraciones")
             return xs
          
-         #Calculo pendiente por punto
+         if(i>0 and self.verificarOscilacionDivergencia(xs,xsant) == True): 
+            return xs
+
+         #Calculo de pendiente por punto
          try:
             m = (f(x1) - f(x0))/(x1 - x0)
-            rtp.append(f"{m}*{x1} - {m}*{x0} + {f(x0)}")
-         except:
-            pass
+            self.lrt.append(str(m)+"*x-"+str(x0*m) +"+"+ str(f(x0)))
+         except Exception:
+            print(Exception)
+            print("Problema al calcular pendiente")
 
          self.lapoxr.append(xs)
          self.lea.append(ea)
@@ -50,7 +56,6 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
 
 
    def hallarRaices(self, opc, tolerancia, iteraciones, cifras):
-      
       #Segun criterio de finalizacion
       match opc:
          case 2:#Umbral
@@ -65,9 +70,9 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
 
       #Calculamos valor de la raiz
       valorRaiz = self.secante(f,x0,x1,tolerancia,iteraciones,cifras)
-      print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
-      self.graficarFuncion(f,self.lapoxr)
-      self.lapoxr.clear()
+      print("\nLa aproximacion de la raiz con una toleracion de {} es: {}".format(tolerancia,valorRaiz))
+      self.graficarRectas(f,self.lrt)
+      self.lrt.clear()
       self.lea.clear()
       _ = input("Presione cualquier tecla para continuar")
 
