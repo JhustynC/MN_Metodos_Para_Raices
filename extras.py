@@ -123,7 +123,10 @@ def pedir_ecuaciones(cant_ecu:int):
 
 print(pedir_ecuaciones(3))
 
+x = np.linspace(-5, -1, 1000)  # Rango de valores para x
 
+plt.plot()
+plt.show()
 
 
 
