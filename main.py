@@ -7,7 +7,8 @@ cifras = 0
 
 #* TODO: Graficar todas las iteraciones Newton-Secante-Muller(Rectas)
 #* TODO: Divisiones para cero
-#* TODO: Divergencia y Oscilacion
+#* TODO: Divergencia y Oscilacion 
+# x^3 - x - 1 -> probar NR
 
 def validarNumero(string,i,vi=None,vf=None) -> (int | float):
     match i:
