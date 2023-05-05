@@ -6,8 +6,10 @@ class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
 
     #* TODO: Funcion para trabjar la expresion (f(x)) algebraicamente
 
-    def funcionAlgebraicamente():
-        ...
+    def funcionAlgebraicamente(self,func:str):
+        funcion = sympify(func)
+        funPredictora = funcion + symbols('x')
+        return lambdify(symbols('x'), funPredictora)
 
     def punto_fijo(self,f,x0,tole,ite,cif):
         xn = 0
@@ -18,11 +20,15 @@ class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
         while True:
             
             #Metodo
-            xnant = xn
-            xn = f(x0)
-            self.lapoxr.append(xn)# listas raiz
-            ea = self.error_aproximado(xn,x0)
-            self.lea.append(ea)# listas eaprox
+            try:
+                xnant = xn
+                xn = f(x0)
+                self.lapoxr.append(xn)# listas raiz
+                ea = self.error_aproximado(xn,x0)
+                self.lea.append(ea)# listas eaprox
+            except:
+                print("Se genero una Excepcion, no se pudo seguir calculando aproximaciones")
+                return xn
             
             if(i > 0 and self.verificarOscilacionDivergencia(xn,xnant) == True): break
 
@@ -52,7 +58,14 @@ class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
                 tolerancia = self.CalcularUmbral(cifras)#Calculo de umbral
         
         #Ingreso de la Función
-        f = self.obtenerFuncion()
+        #f = self.obtenerFuncion()
+        fs = input("ingrese la funcion en terminos de x:")
+        fta = input("Ingrese la funcion trabajada algebraicamente(opcional): ")
+        if(len(fta) != 0): 
+            f = simplify(fta)
+            f = lambdify(self.x,f)
+        else:
+            f = self.funcionAlgebraicamente(fs)
         x0  = float(input("ingrese el X0:")) #Ingreso del limite inferior
 
         #Calculamos valor de la raiz
