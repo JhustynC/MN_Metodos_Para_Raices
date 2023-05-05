@@ -9,6 +9,8 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
       xs = 0
       eap = float("inf")
       i = 0
+      rtp = [] #para rectas en cada punto
+
       print("{:^3} {:^10} {:^10} ".format("i","xs","ea(%)"))
 
       while True:
@@ -21,6 +23,13 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
             print("Division para cero generada, se para las iteraciones")
             return xs
          
+         #Calculo pendiente por punto
+         try:
+            m = (f(x1) - f(x0))/(x1 - x0)
+            rtp.append(f"{m}*{x0} - {m}*{x1} + {f(x0)}")
+         except:
+            pass
+
          self.lapoxr.append(xs)
          self.lea.append(ea)
          x0 = x1

@@ -7,5 +7,7 @@ import matplotlib.pyplot as plt
 
 class Muller(MetodoHallarRaiz, IEncontrarRaices):
 
+   
+   
    def hallarRaices(self, opc, tolerancia, iteraciones, cifras):
       return super().hallarRaices(opc, tolerancia, iteraciones, cifras)
