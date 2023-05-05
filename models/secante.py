@@ -65,10 +65,10 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
 
       #Calculamos valor de la raiz
       valorRaiz = self.secante(f,x0,x1,tolerancia,iteraciones,cifras)
+      print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
       self.graficarFuncion(f,self.lapoxr)
       self.lapoxr.clear()
       self.lea.clear()
-      print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
       _ = input("Presione cualquier tecla para continuar")
 
       

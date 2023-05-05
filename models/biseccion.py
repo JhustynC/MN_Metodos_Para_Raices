@@ -72,10 +72,10 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
         
             valorRaiz = self.biseccion(f,a,b,ea,tolerancia,iteraciones,cifras)#Calculamos el aproximado de la raiz con Bisección
             #Grafica de la funcion y punto
+            print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
             self.graficarFuncion(f,self.lapoxr)
             self.lapoxr.clear()
             self.lea.clear()
-            print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
             _ = input("Presione cualquier tecla para continuar")
 
             #-----------------------------
