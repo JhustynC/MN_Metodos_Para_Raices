@@ -17,12 +17,15 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
 
          #Metodo
          try:
+            xsant = xs
             xs = x1 - ((f(x1))*(x0-x1) / (f(x0)-(f(x1)))) #Formula del método de la secante.
             ea = self.error_aproximado(x1,x0)
          except:
             print("Division para cero generada, se para las iteraciones")
             return xs
          
+         if(i>0 and self.verificarOscilacionDivergencia(xs,xsant) == True): break
+
          #Calculo de pendiente por punto
          try:
             m = (f(x1) - f(x0))/(x1 - x0)

@@ -4,7 +4,10 @@ from sympy import *
 
 class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
 
-    #TODO: Funcion para trabjar la expresion (f(x)) algebraicamente
+    #* TODO: Funcion para trabjar la expresion (f(x)) algebraicamente
+
+    def funcionAlgebraicamente():
+        ...
 
     def punto_fijo(self,f,x0,tole,ite,cif):
         xn = 0
@@ -15,15 +18,19 @@ class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
         while True:
             
             #Metodo
+            xnant = xn
             xn = f(x0)
             self.lapoxr.append(xn)# listas raiz
             ea = self.error_aproximado(xn,x0)
             self.lea.append(ea)# listas eaprox
             
+            if(i > 0 and self.verificarOscilacionDivergencia(xn,xnant) == True): break
+
             #Tabla de valores 
             print("{:^3.0f} {:<10.{}g} {:^2.2f}".format( i+1,xn,cif, ea))
             x0 = xn 
             i += 1
+
 
             #Criterios de finalizacion
             if ite != 0 and i>0 and i == ite:

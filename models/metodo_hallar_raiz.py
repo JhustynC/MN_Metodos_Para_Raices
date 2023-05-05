@@ -10,6 +10,10 @@ class MetodoHallarRaiz():
     lea = []
     lapoxr = []
     lrt = []
+    oscilacion = 0
+    divergencia = 0
+    tole_oscilacion = 3
+    tole_divergencia = 3
 
     def error_aproximado(self,aproxAct:int, aproxAnt:int):
         return abs((aproxAct - aproxAnt)/aproxAct) * 100
@@ -20,7 +24,6 @@ class MetodoHallarRaiz():
         else:
             fs = sympify(input("ingrese la funcion en terminos de x:"))#Ingreso de la Función
         return lambdify(self.x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar
-
 
     CalcularUmbral = lambda self, cifras: (0.5 * pow(10, 2 - cifras))
     CalcularCifras = lambda self, umbral: int(2 - (math.log(2 * umbral) / math.log(10))) # Calcula el número de cifras significativas para el umbral dado
@@ -84,4 +87,19 @@ class MetodoHallarRaiz():
         #plt.ylim([-3,3])
         plt.show()
 
+    def verificarOscilacionDivergencia(self, raizAct, raizAnt):
+                
+        if raizAct * raizAnt < 0:
+            self.oscilacion += 1
+            if self.oscilacion == self.tole_oscilacion:
+                print("El método ha empezado a oscilar")
+                self.oscilacion = 0
+                return True
+            
+        if raizAct >= raizAnt:
+            self.divergencia += 1
+            if self.divergencia == self.tole_divergencia:
+                print("El método no está convergiendo")
+                self.divergencia = 0
+                return True
     

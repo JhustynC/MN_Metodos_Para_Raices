@@ -5,9 +5,9 @@ iteraciones = 0
 tolerancia = 0
 cifras = 0
 
-#TODO: Graficar todas las iteraciones Newton-Secante-Muller(Rectas)
-#TODO: Divisiones para cero
-#TODO: Divergencia y Oscilacion
+#* TODO: Graficar todas las iteraciones Newton-Secante-Muller(Rectas)
+#* TODO: Divisiones para cero
+#* TODO: Divergencia y Oscilacion
 
 def validarNumero(string,i,vi=None,vf=None) -> (int | float):
     match i:
@@ -44,10 +44,10 @@ def seleccionar_opcion_metodo() -> int:
         print("\033[1;36m"+"4.Secante")
         print("\033[1;36m"+"5.Muller")
         print("\033[1;36m"+"6.Gauss-Seidel")
-        print("\033[1;36m"+"7.Modificar Iteraciones - Tolerancia/Umbral (por Default)")
-        print("\033[1;36m"+"8.Salir")
+        #print("\033[1;36m"+"7.Modificar Iteraciones - Tolerancia/Umbral (por Default)")
+        print("\033[1;36m"+"7.Salir")
         print("\033[4;35m"+""+'\033[0;m')
-        op =  validarNumero(input("Ingrese una opcion: "),1,1,8)
+        op =  validarNumero(input("Ingrese una opcion: "),1,1,7)
         if(op != False): return op
         print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
         print("\nOpcion Incorrecta, vuelva a intentar")
@@ -117,30 +117,6 @@ def menu():
                 case 6:
                     gauss_seidel.hallarRaices(opc, tolerancia, iteraciones, cifras)
                 case 7:
-                    print("\n"+"\033[1;36m"+f"El valor de las iteraciones es: {iteraciones}")
-                    print("\033[1;36m"+f"El valor de la tolerancia es: {tolerancia}")
-                    print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
-                    while True:
-                        print( "\n"+"\033[1;4;32m"+"   Modificar Valores Default  "+'\033[0;m') 
-                        print("\033[1;36m"+"1.Iteraciones")
-                        print("\033[1;36m"+"2.Tolerancia/Umbral")
-                        print("\033[1;36m"+"3.Regresar")
-                        print("\033[4;35m"+""+'\033[0;m')
-                        opc = validarNumero(input("Ingrese una opcion:"),1,1,3)
-                        if( opc != False): 
-                            match opc:
-                                case 1:
-                                    iteraciones = validarNumero(input("Ingrese un numero de iteraciones:"),1)
-                                    if iteraciones != False: break
-                                case 2:
-                                    tolerancia = validarNumero(input("Ingrese un numero de tolerancia/umbral:"),2)
-                                    if tolerancia != False: break
-                                case 3:
-                                    break
-                        print("\033[2J\033[1;1f") # Borrar pantalla y situar cursor
-                        print("\nOpcion Incorrecta, vuelva a intentar")
-                    
-                case 8:
                     print("\033[1;31m"+"Gracias por usar el programa")
                     print("\033[4;35m"+""+'\033[0;m')
                     break           

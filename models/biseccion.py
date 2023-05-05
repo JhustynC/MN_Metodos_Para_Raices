@@ -23,10 +23,13 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             
             #Metodo
             i += 1
+            cant = c
             c = self.punto_medio(a,b)
             ea = self.error_aproximado(a,b)
             self.lea.append(ea)
             evalua = f(a)*f(c)
+            
+            if(i>0 and self.verificarOscilacionDivergencia(c,cant) == True): break
 
             self.lapoxr.append(c)
             if evalua < 0:
