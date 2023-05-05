@@ -26,7 +26,7 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
          #Calculo pendiente por punto
          try:
             m = (f(x1) - f(x0))/(x1 - x0)
-            rtp.append(f"{m}*{x0} - {m}*{x1} + {f(x0)}")
+            rtp.append(f"{m}*{x1} - {m}*{x0} + {f(x0)}")
          except:
             pass
 
