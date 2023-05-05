@@ -19,11 +19,20 @@ class NewtonRaphson(MetodoHallarRaiz, IEncontrarRaices):
             #Metodo
             try:
                 xs = x0 - (f(x0)/df(x0))
-                self.lapoxr.append(xs)
                 ea = self.error_aproximado(xs,x0)
             except Exception:
                 print("Se genero una division para cero, se termina las iteraciones")
                 return xs
+            
+            #Calculo de pendiente por punto
+            try:
+                m = df(x0)
+                self.lrt.append(str(m)+"*x-"+str(x0*m) +"+"+ str(f(x0)))
+            except Exception:
+                print(Exception)
+                print("Problema al calcular pendiente")
+
+            self.lapoxr.append(xs)
             x0 = xs
 
             #Tabla de valores

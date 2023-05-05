@@ -26,7 +26,7 @@ class MetodoHallarRaiz():
     CalcularCifras = lambda self, umbral: int(2 - (math.log(2 * umbral) / math.log(10))) # Calcula el número de cifras significativas para el umbral dado
 
     def graficarRectas(self,f,lr:list):
-       
+        x = np.linspace(-5, -1, 1000)  # Rango de valores para x
         print("")
         print("\033[1;31m"+"<--Grafica de la funcion en pantalla-->")
         print("\033[4;35m"+""+'\033[0;m')
@@ -39,11 +39,10 @@ class MetodoHallarRaiz():
         plt.axvline(color="black")
         plt.axhline(color="black")
         if(len(lr) > 0): 
-            #plt.plot(xpts,f(xpts))
             for i in range(len(lr)): 
-                plt.plot(xpts, self.obtenerFuncion(lr[i])(xpts), cmap='Set2' ,label=f'iter {i+1}')
+                g = self.obtenerFuncion(lr[i])
+                plt.plot(xpts, g(xpts) ,label=f'rec {i+1}')
             plt.legend(loc='lower right', ncol = 3,fontsize="small")
-        #plt.ylim([-3,3])
         plt.show()
     
     def graficarFuncionImag(self,f,lp:list):
