@@ -18,14 +18,15 @@ class NewtonRaphson(MetodoHallarRaiz, IEncontrarRaices):
             
             #Metodo
             try:
-                xsant = xs
+                if i > 0:
+                    xsant = xs
                 xs = x0 - (f(x0)/df(x0))
                 ea = self.error_aproximado(xs,x0)
             except Exception:
                 print("Se genero una division para cero, se termina las iteraciones")
                 return xs
             
-            if(i>0 and self.verificarOscilacionDivergencia(xs,xsant) == True): break
+            if(i > 0 and self.verificarOscilacionDivergencia(xs,xsant) == True): break
 
             #Calculo de pendiente por punto
             try:

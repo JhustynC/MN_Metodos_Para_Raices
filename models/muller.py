@@ -18,7 +18,8 @@ class Muller(MetodoHallarRaiz, IEncontrarRaices):
 		while True: 
          
 			#Metodo
-			x3ant = x3
+			if i > 0:
+				x3ant = x3
 			c = f(x2)
 			b = ((x0-x2)**2* (f(x1)-f(x2))-(x1-x2)**2*(f(x0)-f(x2)))/ ((x0-x2)*(x1-x2)*(x0-x1))
 			a = ((x1-x2)*(f(x0)-f(x2))-(x0-x2)*(f(x1)-f(x2)))/((x0-x2)*(x1-x2)*( (x0-x1)))
@@ -63,7 +64,7 @@ class Muller(MetodoHallarRaiz, IEncontrarRaices):
 		#Calculamos valor de la raiz
 		valorRaiz = self.muller(f,x0,x1,x2,tolerancia,iteraciones,cifras)
 		print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
-		print(self.lapoxr)
+		#print(self.lapoxr)
 		self.graficarFuncionImag(f,self.lapoxr)
 		self.lapoxr.clear()
 		self.lea.clear()

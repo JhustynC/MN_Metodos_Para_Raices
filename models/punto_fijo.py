@@ -21,7 +21,8 @@ class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
             
             #Metodo
             try:
-                xnant = xn
+                if i > 0:
+                    xnant = xn
                 xn = f(x0)
                 self.lapoxr.append(xn)# listas raiz
                 ea = self.error_aproximado(xn,x0)
@@ -67,11 +68,11 @@ class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
         else:
             f = self.funcionAlgebraicamente(fs)
         x0  = float(input("ingrese el X0:")) #Ingreso del limite inferior
-
+        fs = lambdify(self.x,sympify(fs))
         #Calculamos valor de la raiz
         valorRaiz = self.punto_fijo(f,x0,tolerancia,iteraciones,cifras)
         print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
-        self.graficarFuncion(f,self.lapoxr)
+        self.graficarFuncion(fs,self.lapoxr)
         self.lapoxr.clear()
         self.lea.clear()
         _ = input("Presione cualquier tecla para continuar")
