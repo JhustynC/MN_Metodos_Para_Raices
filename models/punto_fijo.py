@@ -4,10 +4,6 @@ from sympy import *
 
 class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
 
-    def error_aproximado(self,aproxAct:int, aproxAnt:int):
-        return abs((aproxAct - aproxAnt)/aproxAct) * 100
-
-
     #TODO: Funcion para trabjar la expresion (f(x)) algebraicamente
 
     def punto_fijo(self,f,x0,tole,ite,cif):
@@ -55,6 +51,8 @@ class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
         #Calculamos valor de la raiz
         valorRaiz = self.punto_fijo(f,x0,tolerancia,iteraciones,cifras)
         self.graficarFuncion(f,self.lapoxr)
+        self.lapoxr.clear()
+        self.lea.clear()
         print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
         _ = input("Presione cualquier tecla para continuar")
 

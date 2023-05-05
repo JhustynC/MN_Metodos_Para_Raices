@@ -4,9 +4,6 @@ from sympy import *
 
 class Secante(MetodoHallarRaiz, IEncontrarRaices):
 
-   def error_aproximado(self,aproxAct:int, aproxAnt:int):
-        return abs((aproxAct - aproxAnt)/aproxAct) * 100
-
    def secante(self,f,x0,x1,tole,ite,cif):
 
       xs = 0
@@ -60,6 +57,8 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
       #Calculamos valor de la raiz
       valorRaiz = self.secante(f,x0,x1,tolerancia,iteraciones,cifras)
       self.graficarFuncion(f,self.lapoxr)
+      self.lapoxr.clear()
+      self.lea.clear()
       print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
       _ = input("Presione cualquier tecla para continuar")
 

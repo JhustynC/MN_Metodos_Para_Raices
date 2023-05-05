@@ -10,6 +10,9 @@ class MetodoHallarRaiz():
     lea = []
     lapoxr = []
 
+    def error_aproximado(self,aproxAct:int, aproxAnt:int):
+        return abs((aproxAct - aproxAnt)/aproxAct) * 100
+
     def obtenerFuncion(self):
         fs = sympify(input("ingrese la funcion en terminos de x:"))#Ingreso de la Función
         return lambdify(self.x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar
