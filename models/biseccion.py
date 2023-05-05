@@ -31,6 +31,7 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
 
         while True:
             
+            #Metodo
             i += 1
             c = self.punto_medio(a,b)
             ea = self.error_aproximado(a,b)

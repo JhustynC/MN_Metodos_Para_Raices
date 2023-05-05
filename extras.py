@@ -21,6 +21,7 @@ def obtenerFuncion():
         fs = sympify(input("ingrese la funcion en terminos de x:"))#Ingreso de la Función
         return lambdify(x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar
 
+#--------------------------------------------------------------------
 def metodo(ite = 0, umbral = 0, cif = 4):
         cont = 0
         ea = 1
@@ -36,6 +37,7 @@ def metodo(ite = 0, umbral = 0, cif = 4):
                 cont += 1
                 ea += 1
                 print(f"iteracion {cont}, cifras significativas {cif}")
+#-----------------------------------------------------------------------
 
 metodo(umbral=10)
 
