@@ -9,6 +9,7 @@ class MetodoHallarRaiz():
     
     lea = []
     lapoxr = []
+    #iter: int
 
     def error_aproximado(self,aproxAct:int, aproxAnt:int):
         return abs((aproxAct - aproxAnt)/aproxAct) * 100
@@ -17,6 +18,14 @@ class MetodoHallarRaiz():
         fs = sympify(input("ingrese la funcion en terminos de x:"))#Ingreso de la Función
         return lambdify(self.x, fs) #Transfarmamos a una expresion simbolica y que podamos evaluar
 
+    def testConvergencia(self, error_aproximado:int, lea:list(), iter:int):
+        i:int
+        convergencia = 0.001
+        if(i>=iter):
+            pruebaConvergencia = math.trunc(error_aproximado)
+            if(pruebaConvergencia>=convergencia):
+                print("La funcion presenta una convergencia muy lenta")
+            
 
     CalcularUmbral = lambda self, cifras: (0.5 * pow(10, 2 - cifras))
     CalcularCifras = lambda self, umbral: int(2 - (math.log(2 * umbral) / math.log(10))) # Calcula el número de cifras significativas para el umbral dado

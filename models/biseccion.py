@@ -12,6 +12,7 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
 
         i = 0
         c = 0
+        #tc 
 
         print("")
         print("{:^60}".format("Metodo de Bisección"))
@@ -26,6 +27,7 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
             c = self.punto_medio(a,b)
             ea = self.error_aproximado(a,b)
             self.lea.append(ea)
+            #tc = self.testConvergencia(self,self.lea.append(ea),ite)
             evalua = f(a)*f(c)
 
             self.lapoxr.append(c)
@@ -49,6 +51,8 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
                 #print(f"Tolerancia activa {tole}")
                 print("El error alcanzo el umbral, se termina de iterar")
                 return c
+            
+            #print(tc)
 
     def hallarRaices(self,opc,tolerancia:float , iteraciones:int = 0 ,cifras:int = 3):
         
