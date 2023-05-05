@@ -145,6 +145,8 @@ def menu():
                     print("\033[4;35m"+""+'\033[0;m')
                     break           
         iteraciones = 0
+        tolerancia = 0
+        cifras = 0
 
 def main():
     menu()

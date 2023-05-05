@@ -33,6 +33,7 @@ class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
             if ite != 0 and i>0 and i == ite:
                 #print(f"Iteraciones activa {ite}")
                 print("\nSe alcanzo el numero de iteraciones")
+                return xn
             elif tole != 0 and ea < tole:
                 print("El error alcanzo el umbral, se termina de iterar")
                 return xn

@@ -20,7 +20,9 @@ class MetodoHallarRaiz():
 
 
     def graficarFuncion(self,f,lp:list):
-        print("<--Grafica de la funcion en pantalla-->")
+        print("")
+        print("\033[1;31m"+"<--Grafica de la funcion en pantalla-->")
+        print("\033[4;35m"+""+'\033[0;m')
         xpts = np.linspace(-5,5) #Array de valores, para la grafica
         plt.plot(xpts,f(xpts))
         plt.title("Grafica de la Funcion")

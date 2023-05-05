@@ -7,17 +7,41 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
    def error_aproximado(self,aproxAct:int, aproxAnt:int):
         return abs((aproxAct - aproxAnt)/aproxAct) * 100
 
-   def secante(self,opc,tole,ite,cif):
+   def secante(self,f,x0,x1,tole,ite,cif):
 
-      
+      xs = 0
+      eap = float("inf")
+      i = 0
+      print("{:^3} {:^10} {:^10} ".format("i","xs","ea(%)"))
 
-      #Criterios de finalizacion
-      if ite != 0 and i>0 and i == ite:
-            #print(f"Iteraciones activa {ite}")
-            print("\nSe alcanzo el numero de iteraciones")
-      elif tole != 0 and ea < tole:
-            print("El error alcanzo el umbral, se termina de iterar")
-            return xn
+      while True:
+
+         #Metodo
+         try:
+            xs = x1 - ((f(x1))*(x0-x1) / (f(x0)-(f(x1)))) #Formula del método de la secante.
+            ea = self.error_aproximado(x1,x0)
+         except:
+            print("Division para cero generada, se para las iteraciones")
+            return xs
+         
+         self.lapoxr.append(xs)
+         self.lea.append(ea)
+         x0 = x1
+         x1 = xs
+
+         #Tabla de valores
+         print("{:^3.0f}  {:<10.{}g} {:^2.2f}".format( i+1,xs,cif, ea))
+         i+=1
+
+         #Criterios de finalizacion
+         if ite != 0 and i>0 and i == ite:
+               #print(f"Iteraciones activa {ite}")
+               print("\nSe alcanzo el numero de iteraciones")
+               return xs
+         elif tole != 0 and ea < tole:
+               print("El error alcanzo el umbral, se termina de iterar")
+               return xs
+
 
    def hallarRaices(self, opc, tolerancia, iteraciones, cifras):
       
@@ -30,10 +54,15 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
       
       #Ingreso de la Función
       f = self.obtenerFuncion()
+      x0  = float(input("ingrese el X0:"))
+      x1  = float(input("ingrese el X0:")) 
 
       #Calculamos valor de la raiz
-      #valorRaiz = self.secante(f,x0,tolerancia,iteraciones,cifras)
+      valorRaiz = self.secante(f,x0,x1,tolerancia,iteraciones,cifras)
       self.graficarFuncion(f,self.lapoxr)
+      print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
+      _ = input("Presione cualquier tecla para continuar")
+
       
       
       
