@@ -27,12 +27,12 @@ class NewtonRaphson(MetodoHallarRaiz, IEncontrarRaices):
             #Calculo de pendiente por punto
             try:
                 m = df(x0)
-                self.lrt.append(str(m)+"*x-"+str(x0*m) +"+"+ str(f(x0)))
+                self.lrt.append(str(m)+"*x-"+str(m*x0)+"+"+str(f(x0)))
             except Exception:
                 print(Exception)
                 print("Problema al calcular pendiente")
 
-            self.lapoxr.append(xs)
+            self.lea.append(ea)
             x0 = xs
 
             #Tabla de valores
@@ -72,7 +72,7 @@ class NewtonRaphson(MetodoHallarRaiz, IEncontrarRaices):
 
         #Calculamos valor de la raiz
         valorRaiz = self.newtonRaphson(f,df,x0,tolerancia,iteraciones,cifras)
-        self.graficarFuncion(f,self.lapoxr)
+        self.graficarRectas(f,self.lrt)
         print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
         self.lapoxr.clear()
         self.lea.clear()
