@@ -1,0 +1,5 @@
+#ingnorar el procesar en entorno virtual
+
+#·MNvenv/
+.__pycache__/
+.vscode/
