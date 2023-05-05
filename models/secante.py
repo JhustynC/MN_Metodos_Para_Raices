@@ -7,7 +7,7 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
 
    def secante(self,f,x0,x1,tole,ite,cif):
       xs = 0
-      eap = float("inf")
+      ea = float("inf")
       i = 0
       #lrt = [] #para rectas en cada punto
 
@@ -25,7 +25,7 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
             print("Division para cero generada, se para las iteraciones")
             return xs
          
-         if(i>0 and self.verificarOscilacionDivergencia(xs,xsant) == True): 
+         if(i > 0 and self.verificarOscilacionDivergencia(xs,xsant) == True): 
             return xs
 
          #Calculo de pendiente por punto
@@ -46,7 +46,7 @@ class Secante(MetodoHallarRaiz, IEncontrarRaices):
          i+=1
 
          #Criterios de finalizacion
-         if ite != 0 and i>0 and i == ite:
+         if ite != 0 and i == ite:
                #print(f"Iteraciones activa {ite}")
                print("\nSe alcanzo el numero de iteraciones")
                return xs

@@ -22,16 +22,15 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
         while True:
             
             #Metodo
-            if i > 0:
-                cant = c
-            i += 1
+            if i > 0: cant = c
             c = self.punto_medio(a,b)
             ea = self.error_aproximado(a,b)
             self.lea.append(ea)
             evalua = f(a)*f(c)
             
-            if(i>0 and self.verificarOscilacionDivergencia(c,cant) == True): 
+            if( i > 0 and self.verificarOscilacionDivergencia(c,cant) == True): 
                 return c
+            i += 1
 
             self.lapoxr.append(c)
             if evalua < 0:
