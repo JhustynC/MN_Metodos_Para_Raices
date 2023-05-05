@@ -1,8 +1,6 @@
 from models.metodo_hallar_raiz import MetodoHallarRaiz
 from models.iencontrar_raices import IEncontrarRaices
 from sympy import * 
-import numpy as np
-import matplotlib.pyplot as plt
 
 class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
 
@@ -33,13 +31,10 @@ class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
 
             #Criterios de finalizacion
             if ite != 0 and i>0 and i == ite:
-                print(f"Iteraciones activa {ite}")
+                #print(f"Iteraciones activa {ite}")
                 print("\nSe alcanzo el numero de iteraciones")
-                self.graficarFuncion(f,self.lapoxr)  #Grafica de la funcion y puntos
-                return xn
             elif tole != 0 and ea < tole:
                 print("El error alcanzo el umbral, se termina de iterar")
-                self.graficarFuncion(f,self.lapoxr)  #Grafica de la funcion y puntos
                 return xn
             
 
@@ -58,8 +53,9 @@ class PuntoFijo(MetodoHallarRaiz, IEncontrarRaices):
 
         #Calculamos valor de la raiz
         valorRaiz = self.punto_fijo(f,x0,tolerancia,iteraciones,cifras)
-        print("\nEl valor de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
-        terminar = input() 
+        self.graficarFuncion(f,self.lapoxr)
+        print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
+        _ = input("Presione cualquier tecla para continuar")
 
 
 

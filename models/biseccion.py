@@ -52,11 +52,11 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
 
             #Criterios de finalizacion
             if ite != 0 and i == ite:
-                print(f"Iteraciones activa {ite}")
+                #print(f"Iteraciones activa {ite}")
                 print("\nSe alcanzo el numero de iteraciones")
                 return c 
             elif tole != 0 and ea < tole:
-                print(f"Tolerancia activa {tole}")
+                #print(f"Tolerancia activa {tole}")
                 print("El error alcanzo el umbral, se termina de iterar")
                 return c
 
@@ -80,10 +80,13 @@ class Biseccion(MetodoHallarRaiz, IEncontrarRaices):
                 
         if(f(a) * f(b) < 0): # Verificamos si en el intervalo hay una raiz 
         
-            point = self.biseccion(f,a,b,ea,tolerancia,iteraciones,cifras)#Calculamos el aproximado de la raiz con Bisección
+            valorRaiz = self.biseccion(f,a,b,ea,tolerancia,iteraciones,cifras)#Calculamos el aproximado de la raiz con Bisección
             #Grafica de la funcion y punto
             self.graficarFuncion(f,self.lapoxr)
             self.lapoxr.clear()
+            print("\nLa aproximacion de la raiz con una toleracion de {} es: {:<20.{}g}".format(tolerancia,valorRaiz,cifras))
+            _ = input("Presione cualquier tecla para continuar")
+
             #-----------------------------
         else: # En caso de que la raiz no esta en el intervalo dado
         
