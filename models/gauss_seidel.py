@@ -40,12 +40,11 @@ class GaussSeidel(MetodoHallarRaiz, IEncontrarRaices):
 	def gaussSeidel(self,A,b,tole,ite,cif):
 		
 		
-		A = np.array([[10, -1 ,2, 0],
-					  [-1, 11, -1, 3],
-					  [2, -1, 10, -1],
-					  [0, 3, -1, 8]])
+		A = np.array([[10, 1 ,-1],
+					  [1, 15, 1],
+					  [-1, 2, 20]])
 		
-		b = np.array([6,25,-11,15.]) #tiene que ser flotantes
+		b = np.array([18,-12,17.]) #tiene que ser flotantes
 
 		x = np.zeros_like(b) 
 		ea = float("inf")

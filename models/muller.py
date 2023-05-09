@@ -13,7 +13,7 @@ class Muller(MetodoHallarRaiz, IEncontrarRaices):
 		ea = float('inf')
 		x3 = 0
 		i = 0
-		print("{:^3} {:^10} {:^10} {:^10} {:^10} {:^10} ".format("i","x0","x1","x2","x3","ea(%)"))
+		print("{:^3} {:^10} {:^10} {:^10} {:^10} {:^10} {:^10} ".format("i","x0","x1","x2","x3","f(x)","ea(%)"))
 		
 		while True: 
          
@@ -23,15 +23,15 @@ class Muller(MetodoHallarRaiz, IEncontrarRaices):
 			c = f(x2)
 			b = ((x0-x2)**2* (f(x1)-f(x2))-(x1-x2)**2*(f(x0)-f(x2)))/ ((x0-x2)*(x1-x2)*(x0-x1))
 			a = ((x1-x2)*(f(x0)-f(x2))-(x0-x2)*(f(x1)-f(x2)))/((x0-x2)*(x1-x2)*( (x0-x1)))
-			x3 = x2-(2*c)/(b+sign(b)*sqrt(b**2-4*a*c))
+			x3 = x2-(2*c)/(b+sign(b)*sqrt(b**2-4*a*c)) #aprox raiz
 			ea =  self.error_aproximado(x3,x2) #abs(x3-x2)
 			self.lapoxr.append(x3)
 			self.lea.append(ea)
 
-			if(i>0 and self.verificarOscilacionDivergencia(x3,x3ant) == True): break
+			if(i>0 and self.verificarOscilacionDivergencia(x3,x3ant) == True): return x3
 
 			#Tabla de valores
-			print("{:^3.0f} {:<10.{}g}{:<10.{}g} {:<10.{}g} {:<10.{}g} {:^2.2f}".format( i+1,x0,cif,x1,cif,x2,cif,x3,cif, ea))
+			print("{:^3.0f} {:<10.{}g}{:<10.{}g} {:<10.{}g} {:<10.{}g} {:<10.{}g} {:^2.2f}".format( i+1,x0,cif,x1,cif,x2,cif,x3,cif,c,cif, ea))
 			x0 = x1 
 			x1 = x2
 			x2 = x3

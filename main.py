@@ -6,6 +6,7 @@
 
 from models.agrupacion_metodos import *
 
+
 iteraciones = 0
 tolerancia = 0
 cifras = 0
